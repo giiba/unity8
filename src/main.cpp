@@ -28,9 +28,14 @@ int main(int argc, const char *argv[])
     qSetMessagePattern("[%{time yyyy-MM-dd:hh:mm:ss.zzz}] %{if-category}%{category}: %{endif}%{message}");
 
     bool isMirServer = qgetenv("QT_QPA_PLATFORM") ==  "mirserver";
-    if (!isMirServer && qgetenv("QT_QPA_PLATFORM") == "ubuntumirclient") {
+    if (qgetenv("QT_QPA_PLATFORM") == "ubuntumirclient" || qgetenv("QT_QPA_PLATFORM") == "wayland") {
         setenv("QT_QPA_PLATFORM", "mirserver", 1 /* overwrite */);
         isMirServer = true;
+    }
+
+    // If we are not running using nested mir, we need to set cursor to null
+    if (qEnvironmentVariableIsSet("MIR_SERVER_HOST_SOCKET")) {
+        setenv("MIR_SERVER_CURSOR", "null", 1);
     }
 
     if (enableQmlDebugger(argc, argv)) {
