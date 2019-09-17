@@ -34,7 +34,6 @@ Item {
         when: windowShown
 
         function test_defaults() {
-            deviceConfiguration.name = "nonexisting"
             compare(deviceConfiguration.primaryOrientation, -1)
             compare(deviceConfiguration.landscapeOrientation, Qt.LandscapeOrientation)
             compare(deviceConfiguration.portraitOrientation, Qt.PortraitOrientation)

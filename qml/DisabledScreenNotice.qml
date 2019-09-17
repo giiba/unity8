@@ -30,7 +30,6 @@ Item {
 
     DeviceConfiguration {
         id: deviceConfiguration
-        name: applicationArguments.deviceName
     }
 
     Item {

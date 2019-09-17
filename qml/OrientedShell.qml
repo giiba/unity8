@@ -36,7 +36,6 @@ Item {
 
     DeviceConfiguration {
         id: deviceConfiguration
-        name: applicationArguments.deviceName
     }
 
     property alias orientations: d.orientations
